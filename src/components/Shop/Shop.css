@@ -4,15 +4,17 @@
     /* position: relative; */
 }
 
-.product-container {
+.products-container {
     margin: 50px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 45px;
 }
-.proceed-link{
+
+.proceed-link {
     text-decoration: none;
 }
+
 .btn-proceed {
     background: #FF9900;
     width: 90%;
