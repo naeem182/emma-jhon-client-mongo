@@ -10,6 +10,7 @@ const Shop = () => {
     const [cart, setCart] = useState([])
     const { count } = useLoaderData();
     const [itemsPerPage, setItemsPerPage] = useState(10);
+    const [currentPage, setCurrentPage] = useState(0);
     // console.log(count)
 
 
@@ -92,6 +93,8 @@ const Shop = () => {
         setCurrentPage(0);
     }
 
+
+
     return (
         <div className='shop-container'>
             <div className="products-container">
@@ -116,12 +119,13 @@ const Shop = () => {
 
             </div>
             <div className='pagination'>
-                {/* <p>Current page: {currentPage}</p>
-                    <button onClick={handlePrevPage}>Prev</button> */}
+                {<p>Current page: {currentPage}</p>
+                    // <button onClick={handlePrevPage}>Prev</button>
+                }
                 {
                     pages.map(page => <button
-                        // className={currentPage === page ? 'selected' : undefined}
-                        // onClick={() => setCurrentPage(page)}
+                        className={currentPage === page ? 'selected' : undefined}
+                        onClick={() => setCurrentPage(page)}
                         key={page}
                     >{page}</button>)
                 }
