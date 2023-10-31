@@ -11,6 +11,27 @@ const Shop = () => {
     const { count } = useLoaderData();
     console.log(count)
 
+
+    /**
+     * DONE 1: get the total number of products
+     * Done 2: number of items per page dynamic
+     * TODO 3: get the current page
+    */
+
+    const itemsPerPage = 10;
+
+    const numberOfPages = Math.ceil(count / itemsPerPage);
+
+    // const pages = []
+    // for(let i = 0; i < numberOfPages; i++){
+    //     pages.push(i)
+    // }
+
+
+    const pages = [...Array(numberOfPages).keys()];
+
+    // console.log(numberOfPages)
+    // console.log(pages)
     useEffect(() => {
         fetch('http://localhost:5000/product')
             .then(res => res.json())
@@ -73,6 +94,7 @@ const Shop = () => {
                         product={product}
                         handleAddToCart={handleAddToCart}
                     ></Product>)
+
                 }
             </div>
             <div className="cart-container">
@@ -84,6 +106,18 @@ const Shop = () => {
                         <button className='btn-proceed'>Review Order</button>
                     </Link>
                 </Cart>
+
+            </div>
+            <div className='pagination'>
+                {/* <p>Current page: {currentPage}</p>
+                    <button onClick={handlePrevPage}>Prev</button> */}
+                {
+                    pages.map(page => <button
+                        // className={currentPage === page ? 'selected' : undefined}
+                        // onClick={() => setCurrentPage(page)}
+                        key={page}
+                    >{page}</button>)
+                }
             </div>
         </div>
     );
