@@ -93,6 +93,17 @@ const Shop = () => {
         setCurrentPage(0);
     }
 
+    const handlePrevPage = () => {
+        if (currentPage > 0) {
+            setCurrentPage(currentPage - 1);
+        }
+    }
+
+    const handleNextPage = () => {
+        if (currentPage < pages.length - 1) {
+            setCurrentPage(currentPage + 1);
+        }
+    }
 
 
     return (
@@ -118,10 +129,10 @@ const Shop = () => {
                 </Cart>
 
             </div>
+
             <div className='pagination'>
-                {<p>Current page: {currentPage}</p>
-                    // <button onClick={handlePrevPage}>Prev</button>
-                }
+                <p>Current page: {currentPage}</p>
+                <button onClick={handlePrevPage}>Prev</button>
                 {
                     pages.map(page => <button
                         className={currentPage === page ? 'selected' : undefined}
@@ -129,7 +140,7 @@ const Shop = () => {
                         key={page}
                     >{page}</button>)
                 }
-
+                <button onClick={handleNextPage}>Next</button>
                 <select value={itemsPerPage} onChange={handleItemsPerPage} name="" id="">
                     <option value="5">5</option>
                     <option value="10">10</option>
@@ -137,6 +148,7 @@ const Shop = () => {
                     <option value="50">50</option>
                 </select>
             </div>
+
         </div>
     );
 };
