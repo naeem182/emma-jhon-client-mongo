@@ -24,22 +24,22 @@ const Shop = () => {
 
     const numberOfPages = Math.ceil(count / itemsPerPage);
 
-    // const pages = []
-    // for(let i = 0; i < numberOfPages; i++){
-    //     pages.push(i)
-    // }
+    const pages = []
+    for (let i = 0; i < numberOfPages; i++) {
+        pages.push(i)
+    }
 
 
-    const pages = [...Array(numberOfPages).keys()];
+    // const pages = [...Array(numberOfPages).keys()];
 
     // console.log(numberOfPages)
     // console.log(pages)
     useEffect(() => {
-        fetch('http://localhost:5000/product')
+        fetch(`http://localhost:5000/product?page=${currentPage}&size=${itemsPerPage}`)
             .then(res => res.json())
             .then(data => setProducts(data))
 
-    }, []);
+    }, [currentPage]);
 
     useEffect(() => {
         const storedCart = getShoppingCart();
@@ -142,7 +142,7 @@ const Shop = () => {
                 }
                 <button onClick={handleNextPage}>Next</button>
                 <select value={itemsPerPage} onChange={handleItemsPerPage} name="" id="">
-                    <option value="5">5</option>
+                    <option value="5">5 </option>
                     <option value="10">10</option>
                     <option value="20">20</option>
                     <option value="50">50</option>
